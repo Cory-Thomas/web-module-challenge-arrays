@@ -187,7 +187,7 @@ and should return a new array that is identical to the old array. You can name t
 
 function copy( newArr, arr ){
 
-    const newArr = [...arr];
+     newArr = [...arr];
 
     return newArr;
 
@@ -249,15 +249,26 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(  ){
+function getAverageWordLength( arr ){
+    let count = 0;
 
-    
+    for(let i = 0; i < arr.length; i++) {
 
+        let words = arr[i].split(" ");
+        count += words.length;
+
+    }
+    count /= arr.length;
+
+    console.log(count.toFixed(2));
 };
+
+getAverageWordLength(originalFlavors); 
 
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. 
-Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
+Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, 
+seasonalFlavors, and regionalFlavors.
 
 Your function should accept 4 different arrays,
 
@@ -339,8 +350,18 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors( arr1, arr2, arr3, arr4 ){
 
-    /*code here*/
+    let newArr = [...arr1, ...arr2, ...arr3, ...arr4];
+    let randomFlavors = [];
 
-}
+    for( let i = 0; i < 31; i++ ) {
+        let randomizer = Math.floor( Math.random() * newArr.length );
+        randomFlavors[i] = newArr[randomizer];
+    };
+
+    console.log(randomFlavors, randomFlavors.length);
+
+};
+
+getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors);
